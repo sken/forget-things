@@ -1,7 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {Prisma, Thing} from '@prisma/client';
 import {CreateThingDto} from './dto/create-thing.dto';
-import {UpdateThingDto} from './dto/update-thing.dto';
 import {PrismaService} from "../prisma/prisma.service";
 
 @Injectable()
@@ -14,7 +13,10 @@ export class ThingsService {
 
         function to(data: CreateThingDto): Prisma.ThingCreateInput {
             return {
-                name: data.name
+                name: data.name,
+                category: {
+                    connect: {id: +data.categoryId}
+                }
             }
         }
 
@@ -37,6 +39,9 @@ export class ThingsService {
             cursor,
             where,
             orderBy,
+            include: {
+                category: true
+            }
         });
     }
 

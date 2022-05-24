@@ -18,7 +18,7 @@ model Category {
 
 model Thing {
   id    Int     @default(autoincrement()) @id
-  name  String?
-  category    Category?    @relation(fields: [categoryId], references: [id])
-  categoryId  Int?
+  name  String
+  category    Category    @relation(fields: [categoryId], references: [id])
+  categoryId  Int
 }
