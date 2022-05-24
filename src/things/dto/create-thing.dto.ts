@@ -1,1 +1,3 @@
-export class CreateThingDto {}
+export class CreateThingDto {
+    public name: string;
+}
